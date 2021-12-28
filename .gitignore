@@ -15,6 +15,9 @@
 # production
 /build
 
+# credentials
+/lib/database-url.js
+
 # misc
 .DS_Store
 *.pem
