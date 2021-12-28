@@ -1,7 +1,5 @@
 import { MongoClient } from 'mongodb';
 
-import { DATABASE_URL } from '../../lib/database-url';
-
 async function handler(req, res) {
 	if (req.method === 'POST') {
 		const { email, name, message } = req.body;
@@ -22,7 +20,9 @@ async function handler(req, res) {
 		let client;
 
 		try {
-			client = await MongoClient.connect(DATABASE_URL);
+			client = await MongoClient.connect(
+				`mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.8udcc.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`
+			);
 		} catch (error) {
 			return res
 				.status(500)
